@@ -1,4 +1,4 @@
-# Portuguese-bank
+# Portuguese Bank Dataset
 
 Please, RUN portuguese-bank.py AND NOT portuguese+duration.py
 
