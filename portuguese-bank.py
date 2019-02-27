@@ -13,7 +13,6 @@ import seaborn as sns
 import collections
 #classification algo
 from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
 
 from sklearn.linear_model import LogisticRegression
 from imblearn.over_sampling import SMOTE
@@ -189,12 +188,7 @@ y_pred = logreg.predict(X_test)
 print('Accuracy of logistic regression classifier on test set: {:.2f}'.
       format(logreg.score(X_test, y_test)))
 
-#confusion matrix
-confusion_matrix = confusion_matrix(y_test, y_pred)
-print(confusion_matrix)
-
 print(classification_report(y_test, y_pred))
-
 
 #Before adjusting 
 print("The number of customers to be reached:", len(y_train))
