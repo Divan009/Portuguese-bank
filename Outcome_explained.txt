@@ -1,0 +1,34 @@
+ASSUMPTION:- Cost to make a call = 10
+	         Revenue earned if Yes = 50
+
+Please, RUN portuguese-bank.py AND NOT portuguese+duration.py
+NOTE: Just run the Visualisation Separately because the outcome runs 
+and gets shown before the viz. 
+
+We see that the feature ‘duration’,which tells us about the duration of the last call in seconds, 
+is more than twice for the customers who bought the products than for customers who didn’t.
+I didn't add duration in the model because it is something which can't be controlled by the caller.
+Therefore, maybe as a company you should ask your sales team to make longer calls
+It increases the profit from 49% to 60% (Portuguese+duration.py)
+
+Campaign - which denotes the number of calls made during the current campaign,
+are lower for customers who purchased the products. This increased the profit from
+49% to 52%.
+
+Should target blue-collar jobs, and people with no education because those are the people 
+who will readily buy these deposits. People with no education shouldn't be confused with 
+people who have no source of income. Target blue collar because these people are involved
+with physical labour and will need money in future during emergency.
+
+poutcome - If your previous marketing campaign was a "success", you should definetly try again, as it will 
+result in success. But, if you failed in previous attempt, don't try hard. 
+And, definetly try for the non-existent.
+
+months - Try all year round but, try harder during March, April, May, June, August, October, and 
+	November.
+
+Of the entire test set, 74% of the promoted term deposit were the term deposit that 
+the customers liked. Of the entire test set, 74% of the customer’s preferred term 
+deposits that were promoted.
+
+

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Feb 26 17:28:28 2019
+Created on Wed Feb 27 15:34:02 2019
 
 @author: lenovo
 """
@@ -72,9 +72,9 @@ data.groupby('marital').mean()
 data.groupby('education').mean()
 
 #viz
-####################Run this Separatly
+
 ax = sns.boxplot(x="y", y='duration',data=data)
-ax = sns.boxplot(x="poutcome", y='y',data=data)
+
 ax = sns.boxplot(x="y", y='age',data=data)
 
 pd.crosstab(data.job, data.y).plot(kind='bar')
@@ -109,7 +109,7 @@ plt.title('Purchase frequency for poutcome')
 plt.xlabel('poutcome')
 plt.ylabel('Frequency for purchase')
 
-################## TILL HERE
+
 
 #DUMMY VARIABLE
 cat_val = ['job','marital','education','default',
@@ -140,8 +140,8 @@ os_data_X = pd.DataFrame(data=os_data_X,columns=columns )
 os_data_y= pd.DataFrame(data=os_data_y,columns=['y'])
 # we can Check the numbers of our data
 print("length of oversampled ",len(os_data_X))
-print("Number of no subscription in oversampled data",len(os_data_y[os_data_y['y']==0]))
-print("Number of subscription",len(os_data_y[os_data_y['y']==1]))
+print("# of no subscription in oversampled data",len(os_data_y[os_data_y['y']==0]))
+print("# of subscription",len(os_data_y[os_data_y['y']==1]))
 print("Proportion of no subscription data in oversampled data is ",len(os_data_y[os_data_y['y']==0])/len(os_data_X))
 print("Proportion of subscription data in oversampled data is ",len(os_data_y[os_data_y['y']==1])/len(os_data_X))
 
@@ -157,7 +157,7 @@ print(rfe.support_)
 print(rfe.ranking_)
 
 #we get the selected features
-cols=['euribor3m', 'job_blue-collar', 'job_housemaid', 'marital_unknown', 'education_illiterate', 'default_no', 'default_unknown', 
+cols=['euribor3m','duration','job_blue-collar', 'job_housemaid', 'marital_unknown', 'education_illiterate', 'default_no', 'default_unknown', 
       'contact_cellular', 'contact_telephone', 'month_apr', 'month_aug', 'month_dec', 'month_jul', 'month_jun', 'month_mar', 
       'month_may', 'month_nov', 'month_oct', "poutcome_failure", "poutcome_success"] 
 X=os_data_X[cols]
@@ -172,8 +172,7 @@ print(result.summary2())
 
 #####   WHOM TO MAKE A CALL ###########
 cols=['euribor3m', 'job_blue-collar', 'marital_unknown', 'education_illiterate', 
-      'month_apr', 'month_aug', 'month_dec', 'month_jun', 'month_mar', 
-      'month_may', 'month_nov', 'month_oct','campaign', "poutcome_success"] 
+      "poutcome_success","duration"] 
 X=os_data_X[cols]
 y=os_data_y['y']
 
@@ -190,8 +189,6 @@ print('Accuracy of logistic regression classifier on test set: {:.2f}'.
       format(logreg.score(X_test, y_test)))
 
 #confusion matrix
-confusion_matrix = confusion_matrix(y_test, y_pred)
-print(confusion_matrix)
 
 print(classification_report(y_test, y_pred))
 
