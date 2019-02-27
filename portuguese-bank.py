@@ -10,17 +10,16 @@ import numpy as np
 import statsmodels.formula.api as sm
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import collections
 #classification algo
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-from sklearn import metrics
+
 from sklearn.linear_model import LogisticRegression
 from imblearn.over_sampling import SMOTE
 from sklearn.feature_selection import RFE
 from sklearn.model_selection  import train_test_split
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_curve
+
 
 plt.rc("font", size=14)
 sns.set(style="white")
@@ -77,7 +76,6 @@ data.groupby('education').mean()
 ax = sns.boxplot(x="y", y='duration',data=data)
 
 ax = sns.boxplot(x="y", y='age',data=data)
-
 
 pd.crosstab(data.job, data.y).plot(kind='bar')
 plt.title('Purchase frequency for Job Title')
@@ -171,6 +169,8 @@ result=logit_model.fit()
 print(result.summary2())
 
 #removing the columns with high p-value
+
+#####   WHOM TO MAKE A CALL ###########
 cols=['euribor3m', 'job_blue-collar', 'marital_unknown', 'education_illiterate', 
       'month_apr', 'month_aug', 'month_dec', 'month_jun', 'month_mar', 
       'month_may', 'month_nov', 'month_oct', "poutcome_success"] 
@@ -195,15 +195,22 @@ print(confusion_matrix)
 
 print(classification_report(y_test, y_pred))
 
-#####   WHOM TO MAKE A CALL ###########
 
+#Before adjusting 
+print("The number of customers to be reached:", len(y_train))
+print("The num of respondents are:",y_train.value_counts())
+print("Cost associated for reaching out to a customer: ",len(y_train)*10)
+print("Revenue: ", y_train.value_counts()[1]*50)
+print("Profit(revenue-cost): ",y_train.value_counts()[1]*50-len(y_train)*10)
 
+#after Model
+print("The number of customers to be reached:", len(y_pred))
+mod_yPred = collections.Counter(y_pred)
+print("The number of respondents are: ", mod_yPred)
+print("Cost associated with reaching out a customer: ",len(y_pred)*10)
+print("Revenue: ", mod_yPred[1]*50)
+print("Profit(revenue-cost): ",mod_yPred[1]*50-len(y_pred)*10)
 
-
-
-
-
-
-
-
+print("profit percentage before model: ",(y_train.value_counts()[1]*50-len(y)*10)/(y.value_counts()[1]*50)*100)
+print("profit percentage after model: ",(mod_yPred[1]*50-len(y_pred)*10)/(mod_yPred[1]*50)*100)
 
